@@ -36,7 +36,6 @@ import {
 
 import { ChartsModule } from 'ng2-charts';
 
-import { NotfoundpageComponent } from 'app/notfoundpage/notfoundpage.component';
 
 
 
@@ -74,11 +73,6 @@ import { NotfoundpageComponent } from 'app/notfoundpage/notfoundpage.component';
     EditWardComponent,
     ViewWardComponent,
  
-  NotfoundpageComponent
-
-   
-  
-
   ],
   entryComponents:[WardComponent]
 

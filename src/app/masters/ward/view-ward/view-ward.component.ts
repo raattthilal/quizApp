@@ -11,27 +11,44 @@ export class ViewWardComponent implements OnInit {
   data = {
     quizNo:'',
     question:'',
+    sort_order:'',
     options:[
+      {
+        option:'',
+        key:false
+    },
+    {
+      option:'',
+      key:false
+    },
+    {
+        option:'',
+        key:false
+    },
+    {
+      option:'',
+      key:false
+    }
     ],
     point:'' ,
     month:''
   }
-  optionsA={
-    option:'',
-    key:false
-  }
-  optionsB={
-    option:'',
-    key:false
-  }
-  optionsC={
-    option:'',
-    key:false
-  }
-  optionsD={
-    option:'',
-    key:false
-  }
+  // optionsA={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsB={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsC={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsD={
+  //   option:'',
+  //   key:false
+  // }
   id:string;
 
 
@@ -42,13 +59,13 @@ export class ViewWardComponent implements OnInit {
     console.log(this.id);
     this.ward.getEachQuestion(this.id).subscribe((res)=>{
 
-      this.data = res.ward;
+      this.data = res.data;
       console.log(this.data);
   }
     )
 }
-editgo(id){
-  this.router.navigate([`questions/edit/${id}`])
+editgo(){
+  this.router.navigate([`questions/edit/${this.id}`])
 }
 deletego(id){
   this.ward.deleteQuestion(this.id).subscribe()

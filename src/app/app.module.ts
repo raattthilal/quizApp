@@ -14,12 +14,10 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { AgmCoreModule} from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { Apiinterceptor } from './apiinterceptor';
 
-import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 
 
@@ -46,11 +44,6 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
-    ForgetpasswordComponent,
-    
-   
-  
    
   ],
   providers: [ {

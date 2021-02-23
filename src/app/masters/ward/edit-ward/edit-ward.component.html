@@ -8,20 +8,25 @@
       <li class="breadcrumb-item active" aria-current="page"> Edit Questions</li>
     </ol>
   </nav>
-  <div>
-  <h2 class="text-warning ml-3">Edit Questions</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="text-info ml-3 font-weight-bold">Edit Questions</h2>
+    </div>
+    <div class="mb-2 ml-auto mr-auto">
+      <a [routerLink]="['/questions']" class="btn btn-primary rounded-pill">Back</a>
+    </div>
   </div>
   
   <form #userForm ="ngForm"  (ngSubmit)="userForm.valid && Update(userForm.value)" >
     <div class="card shadow">
     <div class="row mt-5 ml-2">
       <div class="col-md-4">
-        <h5 class="text-primary">Quiz number</h5>
+        <h5 class="text-primary font-weight-bold">Quiz number</h5>
         <input name="quizNo" required #quizNo ="ngModel" type="number" [class.is-invalid]= "quizNo.invalid  && quizNo.touched" class="form-control col-md-4" placeholder="Quiz number" [(ngModel)]="data.quizNo">
         <label class="text-danger" *ngIf="userForm.submitted && quizNo.errors?.required" >Quiz Number required</label>   
       </div>
       <div class="col-md-4">
-        <h5 class="text-primary">Month</h5>
+        <h5 class="text-primary font-weight-bold">Month</h5>
         <select name="month" required #month ="ngModel" class="form-control"  [(ngModel)]="data.month">
           <option value="">Select Month</option>
           <option value="January">January</option>
@@ -39,52 +44,54 @@
         </select>
       </div>
       <div class="col-md-4">
-       
+        <h5 class="text-primary font-weight-bold">Sort order</h5>
+        <input name="sort_order" required #sort_order ="ngModel" type="number" [class.is-invalid]= "sort_order.invalid  && sort_order.touched" class="form-control col-md-4" placeholder="sort_order " [(ngModel)]="data.sort_order">
+        <label class="text-danger" *ngIf="userForm.submitted && sort_order.errors?.required" >sort_order required</label>   
       </div>
      
     </div>
       <div class="row mt-4 ml-3">
        <div class="col-md-8">
-             <h5 class="text-primary">Question</h5> 
+             <h5 class="text-primary font-weight-bold">Question</h5> 
             <input name="questionEn" required #questionEn ="ngModel" type="text" class="form-control" placeholder="Enter the Question" [(ngModel)]="data.question"><br>
             <label *ngIf="userForm.submitted && questionEn.errors?.required" class="text-danger">Question is required</label> 
           </div>
           <div class="col-md-4">
-            <h5 class="text-primary">Points</h5>
+            <h5 class="text-primary font-weight-bold">Points</h5>
             <input name="points" required #points ="ngModel" type="number" [class.is-invalid]= "points.invalid  && points.touched" class="form-control col-md-6" placeholder="Enter the Point" [(ngModel)]="data.point">
             <label class="text-danger" *ngIf="userForm.submitted && points.errors?.required" >Point is required</label>   
           </div>
         </div>
         <div class="row mt-4 mb-4" style="margin: 0%;">
           <div class="col-md-6">
-            <h5 class="text-primary">Option A</h5>
+            <h5 class="text-primary font-weight-bold">Option A</h5>
             <div class="row">
             <div class="col-md-8">
-              <input name="optionA" required #optionA ="ngModel" type="text" class="form-control" placeholder="Enter Option A" [(ngModel)]="optionsA.option"><br>
+              <input name="optionA" required #optionA ="ngModel" type="text" class="form-control" placeholder="Enter Option A" [(ngModel)]="data.options[0].option"><br>
               <label *ngIf="userForm.submitted && optionA.errors?.required" class="text-danger">Option A is required</label> 
             </div>   
             <div class="col-md-4">   
-              <select name="a" required #a ="ngModel" class="form-control"  [(ngModel)]="optionsA.key">
+              <select name="a" required #a ="ngModel" class="form-control"  [(ngModel)]="data.options[0].key">
                 <option value="">isTrue.?</option>
-                <option value="false">False</option>
-                <option value="true">True</option> 
+                <option [ngValue]="false">False</option>
+                <option [ngValue]="true">True</option> 
               </select>
               <label class="text-danger" *ngIf="userForm.submitted && a.errors?.required"  >Field is required</label> 
             </div> 
           </div>
           </div>
           <div class="col-md-6">
-            <h5 class="text-primary">Option B</h5>
+            <h5 class="text-primary font-weight-bold">Option B</h5>
             <div class="row">
             <div class="col-md-8">
-             <input name="optionB" required #optionB ="ngModel" type="text" class="form-control" placeholder="Enter Option B" [(ngModel)]="optionsB.option"><br>
+             <input name="optionB" required #optionB ="ngModel" type="text" class="form-control" placeholder="Enter Option B" [(ngModel)]="data.options[1].option"><br>
              <label *ngIf="userForm.submitted && optionB.errors?.required" class="text-danger">Option B is required</label> 
             </div>   
             <div class="col-md-4">  
-            <select name="b" required #b ="ngModel" class="form-control"  [(ngModel)]="optionsB.key">
+            <select name="b" required #b ="ngModel" class="form-control"  [(ngModel)]="data.options[1].key">
               <option value="">isTrue.?</option>
-              <option value="false">False</option>
-              <option value="true">True</option> 
+              <option [ngValue]="false">False</option>
+              <option [ngValue]="true">True</option> 
             </select>
             <label class="text-danger" *ngIf="userForm.submitted && b.errors?.required"  >Field is required</label> 
            </div>
@@ -93,34 +100,34 @@
         </div>
         <div class="row" style="margin: 0%;">
           <div class="col-md-6">
-            <h5 class="text-primary">Option C</h5>
+            <h5 class="text-primary font-weight-bold">Option C</h5>
             <div class="row">
             <div class="col-md-8">
-              <input name="optionC" required #optionC ="ngModel" type="text" class="form-control" placeholder="Enter Option C" [(ngModel)]="optionsC.option"><br>
+              <input name="optionC" required #optionC ="ngModel" type="text" class="form-control" placeholder="Enter Option C" [(ngModel)]="data.options[2].option"><br>
               <label *ngIf="userForm.submitted && optionC.errors?.required" class="text-danger">Option C is required</label> 
             </div>   
             <div class="col-md-4">   
-              <select name="c" required #c ="ngModel" class="form-control"  [(ngModel)]="optionsC.key">
+              <select name="c" required #c ="ngModel" class="form-control"  [(ngModel)]="data.options[2].key">
                 <option value="">isTrue.?</option>
-                <option value="false">False</option>
-                <option value="true">True</option> 
+                <option [ngValue]="false">False</option>
+                <option [ngValue]="true">True</option> 
               </select>
               <label class="text-danger" *ngIf="userForm.submitted && c.errors?.required"  >Field is required</label> 
             </div> 
           </div>
           </div>
           <div class="col-md-6">
-            <h5 class="text-primary">Option D</h5>
+            <h5 class="text-primary font-weight-bold">Option D</h5>
           <div class="row">
             <div class="col-md-8">
-             <input name="optionD" required #optionD ="ngModel" type="text" class="form-control" placeholder="Enter Option D" [(ngModel)]="optionsD.option"><br>
+             <input name="optionD" required #optionD ="ngModel" type="text" class="form-control" placeholder="Enter Option D" [(ngModel)]="data.options[3].option"><br>
              <label *ngIf="userForm.submitted && optionD.errors?.required" class="text-danger">Option D is required</label> 
             </div>   
             <div class="col-md-4">  
-            <select name="d" required #d ="ngModel" class="form-control"  [(ngModel)]="optionsD.key">
+            <select name="d" required #d ="ngModel" class="form-control"  [(ngModel)]="data.options[3].key">
               <option value="">isTrue.?</option>
-              <option value="false">False</option>
-              <option value="true">True</option> 
+              <option [ngValue]="false">False</option>
+              <option [ngValue]="true">True</option> 
             </select>
             <label class="text-danger" *ngIf="userForm.submitted && d.errors?.required"  >Field is required</label> 
            </div>
@@ -129,7 +136,7 @@
         </div>
      
      <div class="mt-3 mb-4 ml-auto mr-auto">
-      <button class="btn btn-success" (click)="Update()">Uodate Question</button>
+      <button class="btn btn-success" type="submit">Update Question</button>
      </div>
     </div>
   </form>

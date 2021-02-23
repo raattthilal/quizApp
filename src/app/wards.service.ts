@@ -12,16 +12,16 @@ export class WardsService {
     return this.http.get<any>(`/question/list?page=${page}&limit=${limit}`)
   }
   getEachQuestion(id){
-    return this.http.get<any>(`/question/${id}`)
+    return this.http.get<any>(`/question/get?id=${id}`)
   }
   addQuestion(body){
     return this.http.post<any>('/question/create',body)
   }
   editWard(id,data){
-    return this.http.put<any>(`/question/${id}`,data)
+    return this.http.put<any>(`/question/update?id=${id}`,data)
   }
   deleteQuestion(id){
-    return this.http.delete(`/question/${id}`)
+    return this.http.delete(`/question/delete?id=${id}`)
   }
 
 }

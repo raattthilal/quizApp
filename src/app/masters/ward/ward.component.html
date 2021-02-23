@@ -1,28 +1,22 @@
 
 <div class="search-div">
-  <button mat-raised-button [routerLink]="['/questions/create']" routerLinkActive="router-link-active" class="btn-success rounded" >
-    <mat-icon>add</mat-icon>Create Question
-  </button>
+  
   <nav aria-label="breadcrumb" style="margin-left: 1%;">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/questions']">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Questions</li>
     </ol>
   </nav>
+  <button mat-raised-button [routerLink]="['/questions/create']" routerLinkActive="router-link-active" class="btn-success shadow rounded-pill mb-2 mt-2" >
+    <mat-icon>add</mat-icon>Create Question
+  </button>
   <mat-form-field class="search-form-field" floatLabel="never">
     <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
     <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <!-- <div class="row" >
-    <div class="col-md-2" style="margin-left: 4%;"><h5>Lsgi</h5>
-      <select  style="margin-top: 2px;" class="custom-select" [(ngModel)]="lsgi_id" (click)="dist(lsgi_id)">
-        <option value="">Lsgis..</option>
-        <option *ngFor="let item of lsgis" value="{{item.id}}">{{item.name_en}}</option>
-      </select>
-    </div>
-    </div> -->
+
 </div>
 
 <div class="main-content"  style="margin-top: 0%;">
@@ -31,36 +25,41 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-success">
-                      <h4 class="card-title "> Questions</h4>
+                      <h4 class="card-title font-weight-bold"> Questions</h4>
                     
                   </div>
                   <div class="card-body">
                       <div class="table-responsive">
                        
                           <table class="table">
-                  
-                           
-                              
+                            
                               <mat-table [dataSource]="SettingData"  class="mat-elevation-z8"  matSort>
-                                <ng-container matColumnDef="ward_no">
-                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Quiz Number</mat-header-cell>
-                                  <mat-cell *matCellDef="let element">{{element.ward_no}}</mat-cell>
+                                <ng-container matColumnDef="quizNo">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Quiz No</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.quizNo}}</mat-cell>
                                 </ng-container>
-                                
-                                
-                                <ng-container matColumnDef="name_en">
-                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Question id</mat-header-cell>
-                                  <mat-cell *matCellDef="let element">{{element.name_en}}</mat-cell>
+                                <ng-container matColumnDef="month">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Month</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.month}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="sort_order">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Sort Order</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.sort_order}}</mat-cell>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="question">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Question</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.question}}</mat-cell>
                                 </ng-container> 
-                                <ng-container matColumnDef="name_ml">
-                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Question in English</mat-header-cell>
-                                  <mat-cell *matCellDef="let element">{{element.name_ml}}</mat-cell>
+                                <ng-container matColumnDef="point">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Points</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.point}}</mat-cell>
                                 </ng-container> 
                           
                                 
-                                 <ng-container matColumnDef="lsgi1">
-                                  <mat-header-cell *matHeaderCellDef mat-sort-header >Options</mat-header-cell>
-                                  <mat-cell *matCellDef="let element">{{element.lsgi.name_en}}</mat-cell>
+                                 <ng-container matColumnDef="created_at">
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header >Created at</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.created_at}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="actions">
                                   <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -75,8 +74,8 @@
                                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                               </mat-table>
-                              <mat-paginator [length]="SettingData?.lenth" [pageSize]="5"
-                                [pageSizeOptions]="[5,10,15,25,50]" [showFirstLastButtons]="true">
+                              <mat-paginator [length]="length" [pageSize]="10"
+                                [pageSizeOptions]="[5,10,15,25,50]"  (page)="onPaginate($event)">
                               </mat-paginator>
                           
 

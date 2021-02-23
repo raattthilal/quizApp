@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 // import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
-import { LoginService } from 'app/login.service';
+
 
 import { AccService } from 'app/acc.service';
 
@@ -18,50 +18,20 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(private accServ: AccService,location: Location,  private element: ElementRef, private router: Router, private loginServ:LoginService) {
+    constructor(private accServ: AccService,location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
     }
-    dataa={
-        email:'',
-        name:'',
-    middle_name:'',
-    last_name:'',
-
-    }
+   
 log_out(){
-    this.loginServ.logout();
+    // this.loginServ.logout();
     localStorage.clear()
 }
 menulist=[];
     ngOnInit(){
-    //     this.sidebar.getSidebar().subscribe(data=>this.menulist=data);
-    //  this.listTitles = this.menulist.filter(listTitle => listTitle);
-    //   const navbar: HTMLElement = this.element.nativeElement;
-    //   this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-    //   this.router.events.subscribe((event) => {
-    //     this.sidebarClose();
-    //      var $layer: any = document.getElementsByClassName('close-layer')[0];
-    //      if ($layer) {
-    //        $layer.remove();
-    //        this.mobile_menu_visible = 0;
-    //      }
-    //  });
-    //  this.accServ.getdata().subscribe((data) =>{
-    //     this.dataa=data.user;
-    //   });
+   
     }
-    data={
-        message:"Version updated successfully"
-    }
-    // update(){
-    //     this.version.PostVersions(this.data).subscribe((res)=>{
-    //         console.log(res);
-    //         if(res.success==1){
-    //         alert(this.data.message)
-    //         }
-    //     })
-    // }
+    
     
     
     sidebarOpen() {

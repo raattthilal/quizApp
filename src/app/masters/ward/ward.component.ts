@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild,AfterViewInit} from '@angular/core';
-import { MatTableDataSource, MatSort,MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort,MatPaginator, PageEvent } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WardsService } from 'app/wards.service';
 
@@ -11,68 +11,40 @@ import { WardsService } from 'app/wards.service';
 })
 export class WardComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  SettingData :any;
-  perPage=5
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  SettingData: MatTableDataSource<any>;
+  perPage=10
   page=0
 
-  displayedColumns: string[] = ['ward_no','name_en','name_ml','lsgi1','actions'];
+  displayedColumns: string[] = ['quizNo','month','sort_order','question','point','created_at','actions'];
   searchKey: string;
   
-// lsgis:[]
-permissions={};
+
   constructor(private question:WardsService, private router:Router) { }
-  // lsgi_id;
-// dist(x){
-//   this.lsgi_id=x;
-//   // this.lsgi.getLsgis().subscribe((res)=>{this.lsgis=res.items
-//   //   console.log(this.lsgis)});
-//     this.ngOnInit();
-// }
+  
 applyFilter() {
-  this.ngOnInit()
+  this.SettingData.filter = this.searchKey.trim().toLowerCase()
+
+}
+length;
+
+onPaginate(pageEvent: PageEvent) {
+  this.perPage = pageEvent.pageSize;
+  this.page = pageEvent.pageIndex;
+  this.getdata()
 }
   ngOnInit() {
-    // this.per.getpermission(this.permission).subscribe((res)=>{
-    //   console.log(res);
-    //   console.log(this.permission);
-    //   if(res.is_permission==false){
-    //     this.router.navigate(['404errorpage']);
-    //   }
-    //   else{
-        this.question.getAllQuestions(this.page,this.perPage,).subscribe(res=>{
-          this.SettingData = new MatTableDataSource(res.items)
-          console.log(res.items);
-          
-    //       this.totalPages= res.total_pages;
-    //       this.GetpageCount()
-        })
-    //   }
-      
-      
-    // })
-   
-  
-    
- 
-  // this.lsgi.getLsgis().subscribe((res)=>{this.lsgis=res.items
-  //   console.log(this.lsgis)});
+       this.getdata()  
   }
   
-// Pre(){this.page-=1;this.ngOnInit()}
-// next(){this.page+=1;this.ngOnInit()}
+getdata(){
 
-
-// ItemsPerPage(perPage){
+  this.question.getAllQuestions(this.page,this.perPage,).subscribe(res=>{
+    this.SettingData = new MatTableDataSource(res.data.data)
+    this.length=res.data.count;
+  })
   
-//   this.ngOnInit() 
-
-// }
-// PageNo(page){
-
-//    this.page=page;
-//   this.ngOnInit()
-// }
-
+}
 
 editward(id){
   this.router.navigate([`questions/edit/${id}`])
@@ -83,21 +55,16 @@ onSearchClear() {
   this.applyFilter();
 }
 
-
-// editSetting(id){
-//   console.log(id);
-//   this.router.navigate([`/editsettings/${id}`])
-// }
 view_ward(id){
   this.router.navigate([`questions/view/${id}`])
 }
 
 Delete(id){
+  confirm("Are you sure to delete ?") ?
   this.question.deleteQuestion(id).subscribe(()=>{
     console.log('succesfully Deleted');
     this.ngOnInit()
-    
-  })
+  }):null
 }
   
 

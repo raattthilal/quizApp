@@ -12,27 +12,44 @@ export class EditWardComponent implements OnInit {
   data = {
     quizNo:'',
     question:'',
+    sort_order:'',
     options:[
+      {
+          option:'',
+          key:false
+      },
+      {
+        option:'',
+        key:false
+      },
+      {
+          option:'',
+          key:false
+      },
+      {
+        option:'',
+        key:false
+      }
     ],
     point:'' ,
     month:''
   }
-  optionsA={
-    option:'',
-    key:false
-  }
-  optionsB={
-    option:'',
-    key:false
-  }
-  optionsC={
-    option:'',
-    key:false
-  }
-  optionsD={
-    option:'',
-    key:false
-  }
+  // optionsA={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsB={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsC={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsD={
+  //   option:'',
+  //   key:false
+  // }
 id:string
   constructor(private ward:WardsService,private route:ActivatedRoute,private router:Router) { }
 
@@ -44,16 +61,18 @@ id:string
     // // console.log(this.lsgi_types);
     // });
 this.ward.getEachQuestion(this.id).subscribe((res)=>{
-  this.data = res.ward;
+  this.data = res.data;
 });
   }
   
   Update(){
+    console.log("updating....");
+    
     this.save()
   }
   save(){
     this.ward.editWard(this.id,this.data).subscribe((res)=>{
-      if(res.success==1){
+      if(res.success==true){
       console.log('successfully updated');
       this.router.navigate(['/questions'])
       }

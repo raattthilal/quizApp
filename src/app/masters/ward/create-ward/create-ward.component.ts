@@ -13,27 +13,44 @@ export class CreateWardComponent implements OnInit {
   data = {
     quizNo:'',
     question:'',
+    sort_order:'',
     options:[
+      {
+        option:'',
+        key:false
+    },
+    {
+      option:'',
+      key:false
+    },
+    {
+        option:'',
+        key:false
+    },
+    {
+      option:'',
+      key:false
+    }
     ],
     point:'' ,
     month:''
   }
-  optionsA={
-    option:'',
-    key:false
-  }
-  optionsB={
-    option:'',
-    key:false
-  }
-  optionsC={
-    option:'',
-    key:false
-  }
-  optionsD={
-    option:'',
-    key:false
-  }
+  // optionsA={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsB={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsC={
+  //   option:'',
+  //   key:false
+  // }
+  // optionsD={
+  //   option:'',
+  //   key:false
+  // }
       constructor(private question:WardsService, private router:Router) { }
     
       ngOnInit() {
@@ -43,12 +60,13 @@ export class CreateWardComponent implements OnInit {
       sub(data){
         console.log("submitting..");
         
-        this.data.options.push(this.optionsA);
-        this.data.options.push(this.optionsB);
-        this.data.options.push(this.optionsC);
-        this.data.options.push(this.optionsD);
+        // this.data.options.push(this.optionsA);
+        // this.data.options.push(this.optionsB);
+        // this.data.options.push(this.optionsC);
+        // this.data.options.push(this.optionsD);
+        console.log(JSON.stringify(this.data.options));
 
-        this.save()
+       this.save()
        
       }
       save(){

@@ -4,7 +4,7 @@ import { WardComponent } from 'app/masters/ward/ward.component';
 import { CreateWardComponent } from 'app/masters/ward/create-ward/create-ward.component';
 import { EditWardComponent } from 'app/masters/ward/edit-ward/edit-ward.component';
 import { ViewWardComponent } from 'app/masters/ward/view-ward/view-ward.component';
-import { NotfoundpageComponent } from 'app/notfoundpage/notfoundpage.component';
+
 
 export const AdminLayoutRoutes: Routes = [
   
@@ -16,8 +16,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'questions/create',  component: CreateWardComponent},
     { path: 'questions/edit/:id',  component: EditWardComponent},
 
-
-    { path: '404errorpage',  component: NotfoundpageComponent },
 
 
 
