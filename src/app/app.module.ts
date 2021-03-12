@@ -44,6 +44,9 @@ import { Apiinterceptor } from './apiinterceptor';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    
+  
+    
    
   ],
   providers: [ {

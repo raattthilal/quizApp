@@ -35,6 +35,9 @@ import {
 
 
 import { ChartsModule } from 'ng2-charts';
+import { QuizComponent } from 'app/masters/quiz/quiz.component';
+import { ResultComponent } from 'app/masters/result/result.component';
+import { WinnerComponent } from 'app/masters/winner/winner.component';
 
 
 
@@ -72,7 +75,9 @@ import { ChartsModule } from 'ng2-charts';
     CreateWardComponent,
     EditWardComponent,
     ViewWardComponent,
- 
+    QuizComponent,
+    ResultComponent,
+    WinnerComponent,
   ],
   entryComponents:[WardComponent]
 

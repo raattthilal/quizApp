@@ -1,0 +1,75 @@
+<section class="container" style="margin-top: 8%;">
+
+
+<div class="search-div"> 
+  
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+</div>
+
+<div class="main-content"  style="margin-top: 2%;">
+  <div class="container-fluid" style="margin-top: 1%;">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-success">
+                      <h4 class="card-title font-weight-bold"> Quiz Results</h4>
+                    
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                       
+                          <table class="table">
+                            
+                              <mat-table [dataSource]="SettingData"  class="mat-elevation-z8"  matSort>
+                                <ng-container matColumnDef="month">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Month</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.month}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="quizNo">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Quiz Round</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.quizNo}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="houseNo">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >House No</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.houseNo}}</mat-cell>
+                                </ng-container>
+    
+                                <ng-container matColumnDef="point">
+                                  <mat-header-cell *matHeaderCellDef  mat-sort-header  >Points</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{element.point}}</mat-cell>
+                                </ng-container> 
+                          
+                                
+                                 <ng-container matColumnDef="created_at">
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header >Created at</mat-header-cell>
+                                  <mat-cell *matCellDef="let element">{{getDate(element.created_at)}}</mat-cell>
+                                </ng-container>
+                                
+                          
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                              </mat-table>
+                              <mat-paginator [length]="length" [pageSize]="10"
+                                [pageSizeOptions]="[5,10,15,25,50]"  (page)="onPaginate($event)">
+                              </mat-paginator>
+                          
+
+
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+              
+          
+      </div>
+  </div>
+</div>
+</section>

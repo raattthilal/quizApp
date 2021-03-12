@@ -16,7 +16,7 @@ export class WardComponent implements OnInit {
   perPage=10
   page=0
 
-  displayedColumns: string[] = ['quizNo','month','sort_order','question','point','created_at','actions'];
+  displayedColumns: string[] = ['quizNo','month','sort_order','question','point','answer','actions'];
   searchKey: string;
   
 

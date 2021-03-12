@@ -21,7 +21,7 @@
     <div class="card shadow">
     <div class="row mt-5 ml-2">
       <div class="col-md-4">
-        <h5 class="text-primary font-weight-bold">Quiz number</h5>
+        <h5 class="text-primary font-weight-bold">Quiz Round</h5>
         <input name="quizNo" required #quizNo ="ngModel" type="number" [class.is-invalid]= "quizNo.invalid  && quizNo.touched" class="form-control col-md-4" placeholder="Quiz number" [(ngModel)]="data.quizNo" disabled>
         <!-- <label class="text-danger" *ngIf="userForm.submitted && quizNo.errors?.required" >Quiz Number required</label>    -->
       </div>
