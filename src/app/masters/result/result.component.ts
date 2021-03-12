@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
 import { Router } from '@angular/router';
 import { WardsService } from 'app/wards.service';
-import moment = require('moment');
+// import moment = require('moment');
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-result',

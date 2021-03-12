@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WardsService } from 'app/wards.service';
-import moment = require('moment');
-// import moment = require('moment');
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-winner',
